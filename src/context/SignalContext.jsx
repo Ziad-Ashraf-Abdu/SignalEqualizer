@@ -27,8 +27,15 @@ export const SignalProvider = ({ children }) => {
     const [playbackState, setPlaybackState] = useState({ isPlaying: false, speed: 1 });
     const [displaySettings, setDisplaySettings] = useState({
         showSpectrogram: true,
-        fftScale: 'linear', // 'linear' or 'audiogram'
+        // We leave this here, but the new switch won't use it.
+        // Or we can remove it if you are sure it's not used.
+        // For now, we'll just ignore it and add a new state.
+        fftScale: 'linear',
     });
+    
+    // --- ADD THIS NEW STATE ---
+    const [showAudiogram, setShowAudiogram] = useState(true);
+    // -------------------------
 
     const value = {
         audioContext: GlobalAudioContext,
@@ -54,6 +61,11 @@ export const SignalProvider = ({ children }) => {
         setPlaybackState,
         displaySettings,
         setDisplaySettings,
+        
+        // --- EXPOSE THE NEW STATE ---
+        showAudiogram,
+        setShowAudiogram,
+        // ----------------------------
     };
 
     return <SignalContext.Provider value={value}>{children}</SignalContext.Provider>;

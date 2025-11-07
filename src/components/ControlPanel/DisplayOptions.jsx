@@ -4,14 +4,16 @@ import { Switch } from '../ui/switch';
 import { Label } from '../ui/label';
 
 export const DisplayOptions = () => {
-    const { displaySettings, setDisplaySettings } = useSignal();
+    // Get the new audiogram state
+    const { displaySettings, setDisplaySettings, showAudiogram, setShowAudiogram } = useSignal();
 
     const toggleSpectrogram = (checked) => {
         setDisplaySettings((prev) => ({ ...prev, showSpectrogram: checked }));
     };
 
-    const toggleFftScale = (checked) => {
-        setDisplaySettings((prev) => ({ ...prev, fftScale: checked ? 'audiogram' : 'linear' }));
+    // --- RE-WIRE THIS FUNCTION ---
+    const toggleAudiogram = (checked) => {
+        setShowAudiogram(checked);
     };
 
     return (
@@ -24,12 +26,13 @@ export const DisplayOptions = () => {
                     onCheckedChange={toggleSpectrogram}
                 />
             </div>
+            {/* --- RE-WIRE THIS SWITCH --- */}
             <div className="flex items-center justify-between">
-                <Label htmlFor="fft-scale">Audiogram Scale (FFT)</Label>
+                <Label htmlFor="fft-scale">Show Audiogram (FFT Plot)</Label>
                 <Switch
                     id="fft-scale"
-                    checked={displaySettings.fftScale === 'audiogram'}
-                    onCheckedChange={toggleFftScale}
+                    checked={showAudiogram}
+                    onCheckedChange={toggleAudiogram}
                 />
             </div>
         </div>
