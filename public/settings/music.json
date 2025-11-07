@@ -1,0 +1,9 @@
+{
+  "mode": "music",
+  "sliders": [
+    { "id": "drums", "label": "Drums (Kick/Snare)", "bands": [{ "freq": 60, "width": 40 }, { "freq": 200, "width": 100 }, { "freq": 5000, "width": 2000 }], "scale": 1 },
+    { "id": "bass", "label": "Bass Guitar", "bands": [{ "freq": 80, "width": 60 }, { "freq": 500, "width": 300 }], "scale": 1 },
+    { "id": "guitar", "label": "Guitar", "bands": [{ "freq": 1000, "width": 800 }, { "freq": 3000, "width": 1000 }], "scale": 1 },
+    { "id": "vocals", "label": "Vocals", "bands": [{ "freq": 1200, "width": 1000 }, { "freq": 3500, "width": 1500 }], "scale": 1 }
+  ]
+}

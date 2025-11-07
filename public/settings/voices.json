@@ -1,0 +1,9 @@
+{
+  "mode": "voices",
+  "sliders": [
+    { "id": "male_low", "label": "Male (Low)", "bands": [{ "freq": 120, "width": 80 }], "scale": 1 },
+    { "id": "male_high", "label": "Male (High)", "bands": [{ "freq": 200, "width": 100 }], "scale": 1 },
+    { "id": "female_low", "label": "Female (Low)", "bands": [{ "freq": 250, "width": 100 }], "scale": 1 },
+    { "id": "female_high", "label": "Female (High)", "bands": [{ "freq": 400, "width": 200 }], "scale": 1 }
+  ]
+}
