@@ -28,9 +28,9 @@ export const DisplayOptions = () => {
             </div>
             {/* --- RE-WIRE THIS SWITCH --- */}
             <div className="flex items-center justify-between">
-                <Label htmlFor="fft-scale">Show Audiogram (FFT Plot)</Label>
+                <Label htmlFor="show-audiogram">Show Audiogram (FFT Plot)</Label>
                 <Switch
-                    id="fft-scale"
+                    id="show-audiogram"
                     checked={showAudiogram}
                     onCheckedChange={toggleAudiogram}
                 />

@@ -27,10 +27,7 @@ export const SignalProvider = ({ children }) => {
     const [playbackState, setPlaybackState] = useState({ isPlaying: false, speed: 1 });
     const [displaySettings, setDisplaySettings] = useState({
         showSpectrogram: true,
-        // We leave this here, but the new switch won't use it.
-        // Or we can remove it if you are sure it's not used.
-        // For now, we'll just ignore it and add a new state.
-        fftScale: 'linear',
+        fftScale: 'linear', // This is for the *spectrogram* scale, if you want it
     });
     
     // --- ADD THIS NEW STATE ---

@@ -1,6 +1,7 @@
 import React from 'react';
 import { FileLoader } from './FileLoader';
-import { Music } from 'lucide-react';
+// Import the 'Upload' icon
+import { Music, Upload } from 'lucide-react';
 
 export const AppHeader = () => {
     return (
@@ -9,7 +10,8 @@ export const AppHeader = () => {
                 <Music className="text-primary" />
                 <h1 className="text-xl font-bold">Signal Equalizer</h1>
             </div>
-            <FileLoader />
+            {/* Pass the icon as a prop */}
+            <FileLoader icon={<Upload className="w-4 h-4" />} />
         </header>
     );
 };

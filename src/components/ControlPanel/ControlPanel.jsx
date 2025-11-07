@@ -3,23 +3,39 @@ import { Equalizer } from '../Equalizer/Equalizer';
 import { ModeSwitcher } from './ModeSwitcher';
 import { DisplayOptions } from './DisplayOptions';
 import { Separator } from '../ui/separator';
+// Import the new Accordion components
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 export const ControlPanel = () => {
     return (
-        <div className="flex flex-col gap-6 h-full">
-            <div>
-                <h2 className="text-lg font-semibold mb-2">Controls</h2>
-                <ModeSwitcher />
-            </div>
-            <Separator />
-            <div className="flex-1 overflow-y-auto pr-2">
-                <Equalizer />
-            </div>
-            <Separator />
-            <div>
-                <h2 className="text-lg font-semibold mb-2">Display Options</h2>
-                <DisplayOptions />
-            </div>
-        </div>
+        // We set type="multiple" and give all items a default value
+        // so they are all open by default.
+        <Accordion type="multiple" defaultValue={['item-1', 'item-2', 'item-3']} className="w-full">
+            <AccordionItem value="item-1">
+                <AccordionTrigger>Controls</AccordionTrigger>
+                <AccordionContent>
+                    <ModeSwitcher />
+                </AccordionContent>
+            </AccordionItem>
+            
+            <AccordionItem value="item-2">
+                <AccordionTrigger>Equalizer</AccordionTrigger>
+                <AccordionContent>
+                    <Equalizer />
+                </AccordionContent>
+            </AccordionItem>
+            
+            <AccordionItem value="item-3">
+                <AccordionTrigger>Display Options</AccordionTrigger>
+                <AccordionContent>
+                    <DisplayOptions />
+                </AccordionContent>
+            </AccordionItem>
+        </Accordion>
     );
 };
