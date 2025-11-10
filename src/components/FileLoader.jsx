@@ -7,7 +7,9 @@ import { toast } from 'sonner';
 
 // Accept the icon as a prop
 export const FileLoader = ({ icon }) => {
-    const { audioContext, setOriginalSignal } = useSignal();
+    // --- 1. GET THE setAudioFile SETTER ---
+    const { audioContext, setOriginalSignal, setAudioFile } = useSignal();
+
     // Create a ref to trigger the hidden input
     const inputRef = useRef(null);
 
@@ -15,18 +17,28 @@ export const FileLoader = ({ icon }) => {
         const file = event.target.files[0];
         if (!file) return;
 
+        // --- 2. SET THE RAW FILE STATE (THIS IS THE FIX) ---
+        // This is what ControlPanel is waiting for.
+        setAudioFile(file);
+
         toast.info('Loading signal...');
 
         try {
             const arrayBuffer = await file.arrayBuffer();
             const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+            // This is for your visualizer
             setOriginalSignal(audioBuffer);
+
             toast.success('Signal loaded successfully!');
         } catch (error) {
             console.error('Error decoding audio data:', error);
             toast.error('Failed to load audio file.', {
                 description: 'Please try a different file (e.g., .wav, .mp3).',
             });
+
+            // If it fails, reset the file state
+            setAudioFile(null);
         }
 
         // Reset the input value to allow loading the same file again

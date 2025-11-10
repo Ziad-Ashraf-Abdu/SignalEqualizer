@@ -11,6 +11,14 @@ export const SignalProvider = ({ children }) => {
     // Raw signal data
     const [originalSignal, setOriginalSignal] = useState(null); // AudioBuffer
     const [processedSignal, setProcessedSignal] = useState(null); // AudioBuffer
+    const [serverOutputSignal, setServerOutputSignal] = useState(null); // AudioBuffer
+
+    // Raw file for server
+    const [audioFile, setAudioFile] = useState(null); // File object
+
+    // --- ADD THIS ---
+    // 'input', 'eq' (for processed), or 'server'
+    const [activeSource, setActiveSource] = useState('input');
 
     // FFT and Spectrogram data
     const [originalFFT, setOriginalFFT] = useState(null);
@@ -19,22 +27,18 @@ export const SignalProvider = ({ children }) => {
     const [processedSpectrogram, setProcessedSpectrogram] = useState(null);
 
     // EQ settings
-    const [mode, setMode] = useState('generic'); // 'generic', 'music', 'animals', 'voices'
-    const [eqSettings, setEqSettings] = useState({ sliders: [] }); // Array of slider definitions
+    const [mode, setMode] = useState('generic');
+    const [eqSettings, setEqSettings] = useState({ sliders: [] });
 
     // UI display state
     const [viewState, setViewState] = useState({ zoom: 1, pan: 0, currentTime: 0 });
     const [playbackState, setPlaybackState] = useState({ isPlaying: false, speed: 1 });
     const [displaySettings, setDisplaySettings] = useState({
         showSpectrogram: true,
-        fftScale: 'linear', // This is for the *spectrogram* scale
-
-        // --- ADD THIS LINE ---
-        audiogramFreqScale: 'log', // 'log' or 'linear' for the FFT plot
-        // ---------------------
+        fftScale: 'linear',
+        audiogramFreqScale: 'log',
     });
 
-    // This state is fine, it controls visibility
     const [showAudiogram, setShowAudiogram] = useState(true);
 
     const value = {
@@ -43,6 +47,15 @@ export const SignalProvider = ({ children }) => {
         setOriginalSignal,
         processedSignal,
         setProcessedSignal,
+        serverOutputSignal,
+        setServerOutputSignal,
+        audioFile,
+        setAudioFile,
+
+        // --- ADD THESE ---
+        activeSource,
+        setActiveSource,
+
         originalFFT,
         setOriginalFFT,
         processedFFT,
@@ -61,7 +74,6 @@ export const SignalProvider = ({ children }) => {
         setPlaybackState,
         displaySettings,
         setDisplaySettings,
-
         showAudiogram,
         setShowAudiogram,
     };

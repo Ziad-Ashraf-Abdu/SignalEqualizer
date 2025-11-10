@@ -1,19 +1,15 @@
 import React from 'react';
 import { useSignal } from '../../context/SignalContext';
 import { SignalPlot } from './SignalPlot';
-// import { ViewerControls } from './ViewerControls'; // <-- REMOVE
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-// import { useAudioPlayer } from '../../hooks/useAudioPlayer'; // <-- REMOVE
 
 export const SignalViewers = () => {
-    const { originalSignal, processedSignal } = useSignal();
+    // --- 1. Get the new signal from context ---
+    const { originalSignal, processedSignal, serverOutputSignal } = useSignal();
 
-    // The player hook is removed from here
-    
     return (
-        // The outer div and ViewerControls are removed.
-        // The component now *is* the grid of plots.
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 h-full">
+        // --- 2. Change grid to 3 columns ---
+        <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4 h-full">
             <Card className="flex flex-col">
                 <CardHeader><CardTitle>Input Signal</CardTitle></CardHeader>
                 <CardContent className="flex-1">
@@ -21,9 +17,16 @@ export const SignalViewers = () => {
                 </CardContent>
             </Card>
             <Card className="flex flex-col">
-                <CardHeader><CardTitle>Output Signal</CardTitle></CardHeader>
+                <CardHeader><CardTitle>Output Signal (EQ)</CardTitle></CardHeader>
                 <CardContent className="flex-1">
                     <SignalPlot audioBuffer={processedSignal} isInput={false} />
+                </CardContent>
+            </Card>
+            {/* --- 3. Add the new viewer panel --- */}
+            <Card className="flex flex-col">
+                <CardHeader><CardTitle>Server Output</CardTitle></CardHeader>
+                <CardContent className="flex-1">
+                    <SignalPlot audioBuffer={serverOutputSignal} isInput={false} />
                 </CardContent>
             </Card>
         </div>
