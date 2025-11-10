@@ -1,7 +1,7 @@
 {
   "mode": "animals",
   "sliders": [
-    { "id": "dog", "label": "Dog Bark", "bands": [{ "freq": 800, "width": 600 }, {},{}], "scale": 1 },
+    { "id": "dog", "label": "Dog Bark", "bands": [{ "freq": 10000, "width": 4000 }, {},{}], "scale": 1 },
     { "id": "cat", "label": "Cat Meow", "bands": [{ "freq": 1200, "width": 500 }], "scale": 1 },
     { "id": "bird", "label": "Bird Chirp", "bands": [{ "freq": 4000, "width": 2000 }], "scale": 1 },
     { "id": "cow", "label": "Cow Moo", "bands": [{ "freq": 300, "width": 200 }], "scale": 1 }

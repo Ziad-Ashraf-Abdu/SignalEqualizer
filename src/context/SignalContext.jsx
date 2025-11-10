@@ -27,12 +27,15 @@ export const SignalProvider = ({ children }) => {
     const [playbackState, setPlaybackState] = useState({ isPlaying: false, speed: 1 });
     const [displaySettings, setDisplaySettings] = useState({
         showSpectrogram: true,
-        fftScale: 'linear', // This is for the *spectrogram* scale, if you want it
+        fftScale: 'linear', // This is for the *spectrogram* scale
+
+        // --- ADD THIS LINE ---
+        audiogramFreqScale: 'log', // 'log' or 'linear' for the FFT plot
+        // ---------------------
     });
-    
-    // --- ADD THIS NEW STATE ---
+
+    // This state is fine, it controls visibility
     const [showAudiogram, setShowAudiogram] = useState(true);
-    // -------------------------
 
     const value = {
         audioContext: GlobalAudioContext,
@@ -58,11 +61,9 @@ export const SignalProvider = ({ children }) => {
         setPlaybackState,
         displaySettings,
         setDisplaySettings,
-        
-        // --- EXPOSE THE NEW STATE ---
+
         showAudiogram,
         setShowAudiogram,
-        // ----------------------------
     };
 
     return <SignalContext.Provider value={value}>{children}</SignalContext.Provider>;
